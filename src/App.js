@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import UserForm from './Pages/User';
+import AdminForm from './Pages/Admin';
+import Task from './Pages/Task';
+import LoginPage from './Pages/LoginPage';
 
 function App() {
+  const [isUserSection, setIsUserSection] = useState(true);
+
+  const toggleSection = () => {
+    setIsUserSection((prevIsUserSection) => !prevIsUserSection);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={toggleSection}>
+        Switch to {isUserSection ? 'Admin' : 'User'} Section
+      </button>
+      {isUserSection ? <UserForm /> : <AdminForm />}
+      <Task/>
+      <LoginPage/>
     </div>
   );
 }
